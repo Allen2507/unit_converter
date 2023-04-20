@@ -1,0 +1,18 @@
+body
+{
+    font-family: Arial, sans-serif;
+    background:linear-gradient(to right, rgb(201, 0, 117),rgb(34, 156, 255))
+}
+h1
+{
+    text-align:center;
+}
+.container
+{
+    margin: 0 auto;
+    width: 25%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px #cccccc;
+}

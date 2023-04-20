@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unit Conversion</title>
+    <link rel="stylesheet" href="static\style.css" type="text/css">
+</head>
+<body>
+    <h1>Unit Conversion</h1>
+    <form action="/convert" method="post">
+        <label for="unit_type">Unit Type:</label>
+        <select name="unit_type" id="unit_type">
+            <option value=""selected disabled style="color: gray;"> Select Unit type</option>
+            <option value="time">Time</option>
+            <option value="temperature">Temperature</option>
+            <option value="currency">Currency</option>
+            <option value="volume">Volume</option>
+            <option value="distance">Distance</option>
+            <option value="speed">Speed</option>
+        </select>
+
+        <br><br>
+
+        <label for="from_unit">From:</label>
+        <select name="from_unit" id="from_unit" required></select>
+
+        <br><br>
+
+        <label for="to_unit">To:</label>
+        <select name="to_unit" id="to_unit" required></select>
+
+        <br><br>
+
+        <label for="value">Value:</label>
+        <input type="text" name="value" id="value" required>
+
+        <br><br>
+
+        <input type="submit" value="Convert">
+    </form>
+
+    <script>
+        // Retrieve the unit selects
+const unitSelects = document.querySelectorAll('.unit-select');
+
+// Retrieve the unit type select and unit selects
+const unitTypeSelect = document.querySelector('select[name="unit_type"]');
+const fromUnitSelect = document.querySelector('select[name="from_unit"]');
+const toUnitSelect = document.querySelector('select[name="to_unit"]');
+
+// Add event listener to the unit type select to update the unit options
+unitTypeSelect.addEventListener('change', () => {
+  const unitType = unitTypeSelect.value;
+
+  // Clear existing options
+  fromUnitSelect.innerHTML = '';
+  toUnitSelect.innerHTML = '';
+
+  // Add new options based on the selected unit type
+  if (unitType === 'time') {
+    fromUnitSelect.innerHTML += '<option value="seconds">Seconds</option>';
+    fromUnitSelect.innerHTML += '<option value="minutes">Minutes</option>';
+    fromUnitSelect.innerHTML += '<option value="hours">Hours</option>';
+
+    toUnitSelect.innerHTML += '<option value="seconds">Seconds</option>';
+    toUnitSelect.innerHTML += '<option value="minutes">Minutes</option>';
+    toUnitSelect.innerHTML += '<option value="hours">Hours</option>';
+  } else if (unitType === 'temperature') {
+    fromUnitSelect.innerHTML += '<option value="celsius">Celsius</option>';
+    fromUnitSelect.innerHTML += '<option value="fahrenheit">Fahrenheit</option>';
+
+    toUnitSelect.innerHTML += '<option value="celsius">Celsius</option>';
+    toUnitSelect.innerHTML += '<option value="fahrenheit">Fahrenheit</option>';
+  } else if (unitType === 'currency') {
+    fromUnitSelect.innerHTML += '<option value="usd">USD</option>';
+    fromUnitSelect.innerHTML += '<option value="eur">EUR</option>';
+
+    toUnitSelect.innerHTML += '<option value="usd">USD</option>';
+    toUnitSelect.innerHTML += '<option value="eur">EUR</option>';
+  } else if (unitType === 'volume') {
+    fromUnitSelect.innerHTML += '<option value="liters">Liters</option>';
+    fromUnitSelect.innerHTML += '<option value="gallons">Gallons</option>';
+
+    toUnitSelect.innerHTML += '<option value="liters">Liters</option>';
+    toUnitSelect.innerHTML += '<option value="gallons">Gallons</option>';
+  } else if (unitType === 'distance') {
+    fromUnitSelect.innerHTML += '<option value="meters">Meters</option>';
+    fromUnitSelect.innerHTML += '<option value="feet">Feet</option>';
+
+    toUnitSelect.innerHTML += '<option value="meters">Meters</option>';
+    toUnitSelect.innerHTML += '<option value="feet">Feet</option>';
+  } else if (unitType === 'speed') {
+    fromUnitSelect.innerHTML += '<option value="kph">KPH</option>';
+    fromUnitSelect.innerHTML += '<option value="mph">MPH</option>';
+
+    toUnitSelect.innerHTML += '<option value="kph">KPH</option>';
+    toUnitSelect.innerHTML += '<option value="mph">MPH</option>';
+  }
+
+  // Reset selected options to the first option in the list
+  fromUnitSelect.selectedIndex = 0;
+  toUnitSelect.selectedIndex = 0;
+});
+
+// Add event listeners to the unit selects to update the conversion result
+unitSelects.forEach(select => {
+  select.addEventListener('change', () => {
+    // Retrieve the selected values from the unit selects
+    const fromUnit = fromUnitSelect.value;
+    const toUnit = toUnitSelect.value;
+
+    // Update the conversion result based on the selected units
+    updateConversionResult(fromUnit, toUnit);
+  });
+});
+    </script>
+</body>
+</html>
+<!-- ```
+
+When the user submits the form, the `/convert` route is called with a `POST` request. This route retrieves the unit type, from unit, to unit, and value from the form data, performs the appropriate conversion, and renders the result page with the original values and the converted value.
+
+```html -->
