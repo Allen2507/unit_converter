@@ -6,8 +6,8 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/convert', methods=['POST'])
-def convert():
+@app.route('/convert/<unit_type>/<from_unit>/<to_unit>/<value>')
+def convert(unit_type, from_unit, to_unit, value):
     unit_type = request.form['unit_type']
     from_unit = request.form['from_unit']
     to_unit = request.form['to_unit']
