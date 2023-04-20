@@ -2,7 +2,7 @@ This is a simple unit convertor project done using Python and Flask as the web f
 
 URL:
 
-https://allen2507.github.io/unit_converter
+https://unit-converter-wheat.vercel.app/
 
 
 To install the required dependencies type the following code in terminal
