@@ -1,7 +1,7 @@
 /* Set font and background styles */
 body {
     font-family: Arial, sans-serif;
-    background:linear-gradient(to right, rgb(201, 0, 117),rgb(34, 156, 255))
+    background:linear-gradient(to right, #fff,rgb(34, 156, 255))
 }
 
 /* Style the header */
